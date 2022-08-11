@@ -5,9 +5,8 @@
       <router-link 
       :to="{ name: 'character', params: { id: character.id} }" class="marvel-content" v-for="character in characters" :key="character.id">
         <img class="marvel-characters" :src="`${character.thumbnail.path}.${character.thumbnail.extension}`" :alt="`Foto do ${character.name}`">
-        <div class="marvel-description">
-          <h3>{{character.name}}</h3>
-        </div>
+        
+        <h3>{{character.name}}</h3>
       </router-link>
     </div>
   </div>
@@ -46,33 +45,28 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-auto-rows: 250px;
-  grid-gap: 2rem;
+  grid-gap: 2.5rem;
+  padding: 0 0 5rem 0;
 }
 
 .marvel-content {
-  background-color: #e62429;
-  margin: 10px auto;
-  width: 172px;
-  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
   cursor: pointer;
-  border-radius: 8px 8px 0 0;
   text-decoration: none;
+}
 
+.marvel-content h3 {
+  width: 172px;
+  background-color: #e62429;
+  padding: 1rem;
+  color: #fff;
+  margin-top: -10px;
+  white-space: pre-line; 
 }
 
 .marvel-characters {
   height: 210px;
   max-width: 172px;
-  border-bottom: 3px solid #e62429;
   border-radius: 8px 8px 0 0;
-}
-
-.marvel-description {
-  background-color: #e62429;
-  color: #151515;
-  height: 60px;
-  padding: 10px;
-  white-space: pre-line; 
 }
 
 </style>
