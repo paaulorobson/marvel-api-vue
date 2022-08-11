@@ -2,12 +2,13 @@
   <div class="marvel-container">
     <h1>Personagens</h1>
     <div class="marvel-wrapper">
-      <figure class="marvel-content" v-for="character in characters" :key="character.id">
+      <router-link 
+      :to="{ name: 'character', params: { id: character.id} }" class="marvel-content" v-for="character in characters" :key="character.id">
         <img class="marvel-characters" :src="`${character.thumbnail.path}.${character.thumbnail.extension}`" :alt="`Foto do ${character.name}`">
         <div class="marvel-description">
           <h3>{{character.name}}</h3>
         </div>
-      </figure>
+      </router-link>
     </div>
   </div>
   
@@ -26,7 +27,6 @@ export default {
   computed: {
     ...mapState({
       characters: state => state.characters,
-      imageURL: state => state.url
     })
   },
 
@@ -57,6 +57,7 @@ export default {
   box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
   cursor: pointer;
   border-radius: 8px 8px 0 0;
+  text-decoration: none;
 
 }
 
