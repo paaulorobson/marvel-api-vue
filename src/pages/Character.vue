@@ -7,14 +7,7 @@
     <div class="marvel-wrapper">
       <div v-for="char in character" :key="char.id">
         <h1>{{char.name}}</h1>
-
-        <template v-if="possuiDescricao">
-          <p>{{char.description}}</p>
-        </template>
-
-        <template v-else>
-          <p>O personagem não possui uma descrição detalhada.</p>
-        </template>
+        <p>{{char.description}}</p>
       </div>
 
       <div>
@@ -51,7 +44,7 @@ export default {
     }),
 
     possuiDescricao() {
-      return this.character.description == '' ? true : false
+      return this.character.description === '' ? true : false
     }
   },
 
@@ -90,6 +83,7 @@ export default {
   font-size: 1.5rem;
   font-weight: bold;
   text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
 }
 
 .marvel-container h1 {
@@ -103,8 +97,9 @@ export default {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: 8rem;
-  margin-top: 5rem;
+  gap: 5rem;
+  margin: 5rem auto;
+  max-width: 1000px;
 }
 
 .marvel-wrapper p {
