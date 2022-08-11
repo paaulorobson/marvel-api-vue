@@ -63,7 +63,7 @@ export default {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  height: 100vh;
+  height: calc(100vh - 92px);
 }
 
 .marvel-back {
