@@ -1,19 +1,25 @@
 <template>
   <div class="marvel-container">
-    <div v-for="char in character" :key="char.id">
-      <h1>{{char.name}}</h1>
+    <router-link to="/" class="marvel-back">
+      <img src="../assets/arrow_back.svg" alt="">
+      <p>Voltar</p>
+    </router-link>
+    <div class="marvel-wrapper">
+      <div v-for="char in character" :key="char.id">
+        <h1>{{char.name}}</h1>
 
-        <template v-if="naoPossuiDescricao">
-          <h3> Não possui uma descrição</h3>
-        </template>
-        <template v-else>
+        <template v-if="possuiDescricao">
           <p>{{char.description}}</p>
         </template>
-     
-    </div>
 
-    <div>
-      <img :src="url" alt="Foto do personagem">
+        <template v-else>
+          <p>O personagem não possui uma descrição detalhada.</p>
+        </template>
+      </div>
+
+      <div>
+        <img :src="url" alt="Foto do personagem">
+      </div>
     </div>
   </div>
 </template>
@@ -33,24 +39,25 @@ export default {
 
   mounted() {
     this.$store.dispatch('getCharacter', this.$route.params.id)
-
     this.getImage()
   },
+ 
 
   computed: {
     ...mapState({
       character: state => state.character,
-      preUrl: state => state.url
+      image: state => state.url
+
     }),
 
-    naoPossuiDescricao() {
-      return this.character.description == '' ? false : true
+    possuiDescricao() {
+      return this.character.description == '' ? true : false
     }
   },
 
   methods: {
     getImage() {
-      this.url = `${this.preUrl}${this.size}`
+      this.url = `${this.image}${this.size}`
     }
   }
 }
@@ -66,6 +73,25 @@ export default {
   height: 100vh;
 }
 
+.marvel-back {
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+}
+
+.marvel-back img {
+  margin-top: 1rem;
+  width: 2rem;
+}
+
+.marvel-back p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 .marvel-container h1 {
   margin: 1rem 0;
   color: #fff;
@@ -73,4 +99,21 @@ export default {
   font-family: 'Anton', cursive;
 }
 
+.marvel-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8rem;
+  margin-top: 5rem;
+}
+
+.marvel-wrapper p {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.marvel-wrapper img {
+  width: 300px;
+  height: auto;
+}
 </style>
